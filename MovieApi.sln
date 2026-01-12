@@ -13,9 +13,24 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Presentation", "Presentatio
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Requirements", "Requirements", "{6E43D4DA-6F98-4F9B-A59D-124C1B33FC54}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MovieApi.Domain", "Core\MovieApi.Domain\MovieApi.Domain.csproj", "{4B035C4E-14BD-4285-BB05-7D641D2C8F39}"
+EndProject
 Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{4B035C4E-14BD-4285-BB05-7D641D2C8F39}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4B035C4E-14BD-4285-BB05-7D641D2C8F39}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4B035C4E-14BD-4285-BB05-7D641D2C8F39}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4B035C4E-14BD-4285-BB05-7D641D2C8F39}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{4B035C4E-14BD-4285-BB05-7D641D2C8F39} = {02EA681E-C7D8-13C7-8484-4AC65E1B71E8}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {8CE5EA45-E7A6-4D50-B83A-BA8F7D4F0C2A}
