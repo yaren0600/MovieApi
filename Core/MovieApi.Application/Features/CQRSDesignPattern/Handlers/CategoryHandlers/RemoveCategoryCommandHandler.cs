@@ -1,5 +1,4 @@
 ﻿using MovieApi.Application.Features.CQRSDesignPattern.Commands.CategoryCommands;
-using MovieApi.Domain.Entities;
 using MovieApi.Persistence.Context;
 using System;
 using System.Collections.Generic;
@@ -7,25 +6,21 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-/// CQRS yapısında yeni kategori eklemek için kullanılan handler.
-/// Command ile gelen veriyi alır, Category entity'si oluşturur 
-/// ve veritabanına kaydeder.
+//Kategori id'sine göre silme işlemini gerçekleştirir ve veri tabanına kaydeder
 
 namespace MovieApi.Application.Features.CQRSDesignPattern.Handlers.CategoryHandlers
 {
-    public class CreateCategoryCommanHandler
+    public class RemoveCategoryCommandHandler
     {
         private readonly MovieContext _context;
-        public CreateCategoryCommanHandler(MovieContext context)
+        public RemoveCategoryCommandHandler(MovieContext context)
         {
             _context = context;
         }
-        public async void Handle(CreateCategoryCommand command)
+        public async void Handler(RemoveCategoryCommand command)
         {
-            _context.Categories.Add(new Category
-            {
-                CategoryName = command.CategoryName
-            });
+            var value=await _context.Movies.FindAsync(command.CategoryId);
+            _context.Movies.Remove(value);
             await _context.SaveChangesAsync();
         }
     }
