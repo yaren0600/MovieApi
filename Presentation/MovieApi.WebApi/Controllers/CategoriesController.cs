@@ -16,10 +16,10 @@ namespace MovieApi.WebApi.Controllers
         private readonly UpdateCategoryCommandHandler _updateCategoryCommandHandler;
         private readonly GetCategoryByIdQueryHandler _getByIdCategoryQueryHandler;
 
-        public CategoriesController(GetCategoryQueryHandler getCategoryQueryHandler, 
-            CreateCategoryCommandHandler createCategoryCommandHandler, 
-            RemoveCategoryCommandHandler removeCategoryCommandHandler, 
-            UpdateCategoryCommandHandler updateCategoryCommandHandler, 
+        public CategoriesController(GetCategoryQueryHandler getCategoryQueryHandler,
+            CreateCategoryCommandHandler createCategoryCommandHandler,
+            RemoveCategoryCommandHandler removeCategoryCommandHandler,
+            UpdateCategoryCommandHandler updateCategoryCommandHandler,
             GetCategoryByIdQueryHandler getByIdCategoryQueryHandler)
         {
             _getCategoryQueryHandler = getCategoryQueryHandler;
@@ -39,8 +39,31 @@ namespace MovieApi.WebApi.Controllers
         [HttpPost]
         public async Task<IActionResult> CreateCategory(CreateCategoryCommand command)
         {
-            await _createCategoryCommandHandler.Handler(command);
+            await _createCategoryCommandHandler.Handle(command);
             return Ok("Category Ekleme İşlemi Başarılı");
+        }
+
+        [HttpDelete]
+        public async Task<IActionResult> DeleteCategory(int id)
+        {
+            await _removeCategoryCommandHandler.Handle(new RemoveCategoryCommand(id));
+            return Ok("Category Silme İşlemi Başarılı");
+        }
+
+        [HttpPut]
+
+        public async Task<IActionResult> UpdateCategory(UpdateCategoryCommand command)
+        {
+            await _updateCategoryCommandHandler.Handle(command);
+            return Ok("Category Güncelleme İşlemi Başarılı");
+        }
+
+        [HttpGet("GetCategory")]
+        public async Task<IActionResult> GetCategory(int id)
+        {
+            var value = await _getByIdCategoryQueryHandler.Handle(new GetCategoryByIdQuery(id));
+            return Ok(value);
+
         }
     }
 }
